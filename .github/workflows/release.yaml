@@ -189,6 +189,8 @@ jobs:
         build-macos-x86_64-extension,
         build-macos-aarch64-extension,
         build-windows-x86_64-extension,
+        build-windows-x86-extension,
+        build-windows-arm64x-extension,
         build-wasm32-emscripten,
         build-android-extensions,
         build-ios-extensions,
@@ -217,6 +219,14 @@ jobs:
         with:
           name: sqlite-vec-windows-x86_64-extension
           path: dist/windows-x86_64
+      - uses: actions/download-artifact@v4
+        with:
+          name: sqlite-vec-windows-x86-extension
+          path: dist/windows-x86
+      - uses: actions/download-artifact@v4
+        with:
+          name: sqlite-vec-windows-arm64x-extension
+          path: dist/windows-arm64x
       - uses: actions/download-artifact@v4
         with:
           name: sqlite-vec-wasm32-emscripten
@@ -276,6 +286,8 @@ jobs:
           npm publish --access public distx/npm/sqlite-vec-linux-x64.tar.gz
           npm publish --access public distx/npm/sqlite-vec-linux-arm64.tar.gz
           npm publish --access public distx/npm/sqlite-vec-windows-x64.tar.gz
+          npm publish --access public distx/npm/sqlite-vec-windows-x86.tar.gz
+          npm publish --access public distx/npm/sqlite-vec-windows-arm64x.tar.gz
           npm publish --access public distx/npm/sqlite-vec-wasm-demo.tar.gz
           npm publish --access public distx/npm/sqlite-vec.tar.gz
         env:
